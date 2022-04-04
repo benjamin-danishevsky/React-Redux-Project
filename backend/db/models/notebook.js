@@ -10,4 +10,4 @@ module.exports = (sequelize, DataTypes) => {
     Notebook.hasMany(models.Note, { foreignKey: 'notebookId' })
   };
   return Notebook;
-};
+}; 

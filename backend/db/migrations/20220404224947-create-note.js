@@ -16,7 +16,7 @@ module.exports = {
       notebookId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Notesbooks' }
+        references: { model: 'Notebooks' }
       },
       title: {
         type: Sequelize.STRING(100),
@@ -28,11 +28,13 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       }
     });
   },
