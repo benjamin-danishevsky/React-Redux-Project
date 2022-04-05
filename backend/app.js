@@ -31,16 +31,16 @@ app.use(
 );
 
 // Set the _csrf token and create req.csrfToken method
-//comment out for testing with postman
-// app.use(
-//     csurf({
-//         cookie: {
-//         secure: isProduction,
-//         sameSite: isProduction && "Lax",
-//         httpOnly: true
-//         }
-//     })
-// );
+// comment out for testing with postman
+app.use(
+    csurf({
+        cookie: {
+        secure: isProduction,
+        sameSite: isProduction && "Lax",
+        httpOnly: true
+        }
+    })
+);
 
 app.use(routes); // Connect all the routes
 
