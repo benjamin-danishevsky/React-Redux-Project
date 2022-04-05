@@ -8,9 +8,9 @@ router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-router.use('/notes', notesRouter);
+router.use(notesRouter);
 
-router.use('/notebooks', notebookRouter);
+router.use(notebookRouter);
 
 // router.post('/test', (req, res) => {
 //   res.json({ requestBody: req.body });

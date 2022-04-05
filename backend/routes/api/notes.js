@@ -9,13 +9,19 @@ const { Note } = require('../../db/models');
 const router = express.Router();
 
 router.get(
-    '/',
+    '/users/:userId/notes',
     asyncHandler(async (req, res, next) => {
-        console.log('notes request');
-        const notes = await Note.findAll();
+        const userId = req.params.userId
+
+        const notes = await Note.findAll({
+            where: { userId }
+        });
         return res.json({ notes })
     })
 );
+
+
+
 
 
 
