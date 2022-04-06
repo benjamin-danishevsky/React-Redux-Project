@@ -1,8 +1,18 @@
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import * as sessionActions from "../../store/session";
 import { useHistory } from 'react-router-dom';
+import LoginFormModal from '../LoginFormModal';
+import LoginForm from '../LoginFormModal/LoginForm'
+import './SplashPage.css'
 
 const SplashPage = () => {
     const history = useHistory();
-
+    const dispatch = useDispatch();
+    const [isLoaded, setIsLoaded] = useState(false);
+    useEffect(() => {
+        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    }, [dispatch]);
 
 
     return (
@@ -18,11 +28,12 @@ const SplashPage = () => {
                             Sign up for free
                         </a>
                     </p>
-                    <p className='login-tag'>
+                    {/* <p className='login-tag'>
                         <a href='/login' className='btn-login-tag'>
                             Already have an account? Log in
                         </a>
-                    </p>
+
+                    </p> */}
                 </div>
                 <div className='mid-content-1'>
                     <div className='mid-content-img-container'>
@@ -71,7 +82,7 @@ const SplashPage = () => {
                     </div>
                 </div>
             </div>
-
+{/*
             <div className="info-card-component">
                 <div className="info-cards">
                     <div className='card'>
@@ -95,7 +106,7 @@ const SplashPage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
 
         </div>
