@@ -59,9 +59,9 @@ export const postNotebook = (notebook, userId) => async (dispatch) => {
     if(response.ok){
 
         const newNotebook = await response.json()
-        console.log(newNotebook)
+
         dispatch(createNotebook(newNotebook))
-        //return newNotebook
+        return newNotebook
     }
 
 }
@@ -75,7 +75,7 @@ export const deleteNotebookThunk = (notebookId, userId) => async (dispatch) => {
 
     if (response.ok) {
         const removedNotebook = await response.json();
-        console.log(removedNotebook)
+
         dispatch(deleteNotebook(removedNotebook));
         return removedNotebook
     }
@@ -95,10 +95,15 @@ const notebookReducer = (state = initialState, action) => {
             action.notebooks.forEach(notebook => newState[notebook.id] = notebook)
             return newState;
         case CREATE_NOTEBOOK:
-            return {...state, [action.newNotebook.id]: action.newNotebook}
-        case DELETE_NOTEBOOK:
+            //works
             newState = {...state};
-            delete newState[action.notebook]
+            console.log(action.newNotebook.newNotebook)
+            newState[action.newNotebook.newNotebook.id] = action.newNotebook.newNotebook
+            return newState;
+        case DELETE_NOTEBOOK:
+            //works
+            newState = {...state};
+            delete newState[action.notebook.deletedNotebook.id]
             return newState;
         default:
             return state;

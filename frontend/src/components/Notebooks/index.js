@@ -41,7 +41,10 @@ function Notebooks(){
                     {showDeleteModal && (
                         <Modal onClose={() => setShowDeleteModal(false)}>
                             <h3>Are you sure?</h3>
-                            <button onClick={() => dispatch(notebookActions.deleteNotebookThunk(notebook.id, userId))}>Yes, I am sure</button>
+                            <button onClick={() => {
+                                dispatch(notebookActions.deleteNotebookThunk(notebook.id, userId))
+                                setShowDeleteModal(false)
+                            }}>Yes, I am sure</button>
                         </Modal>
                     )}
                 </div>
@@ -49,7 +52,7 @@ function Notebooks(){
             <button onClick={() => setShowModal(true)}>Create New Notebook</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <CreateNotebookForm />
+                    <CreateNotebookForm showModal={showModal} setShowModal={setShowModal}/>
                 </Modal>
             )}
         </div>

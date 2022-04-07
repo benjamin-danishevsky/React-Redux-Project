@@ -6,7 +6,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import * as notebookActions from '../../store/notebook';
 
 
-function CreateNotebookForm(){
+function CreateNotebookForm ({showModal, setShowModal}) {
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -33,7 +33,8 @@ function CreateNotebookForm(){
             userId,
             title,
         }
-        dispatch(notebookActions.postNotebook(newNotebook, userId))
+        dispatch(notebookActions.postNotebook(newNotebook, userId));
+        setShowModal(false);
 
     }
     return (
