@@ -43,8 +43,9 @@ export const fetchNotebooks = (userId) => async (dispatch) => {
     const response = await csrfFetch(`/api/users/${userId}/notebooks`)
     if(response.ok) {
         const notebooks = await response.json();
+        //console.log(notebooks.notebooks)
         dispatch(getNotebooks(notebooks.notebooks));
-        return notebooks;
+        //return notebooks;
     }
 };
 
@@ -60,7 +61,7 @@ export const postNotebook = (notebook, userId) => async (dispatch) => {
         const newNotebook = await response.json()
         console.log(newNotebook)
         dispatch(createNotebook(newNotebook))
-        return newNotebook
+        //return newNotebook
     }
 
 }
@@ -84,16 +85,18 @@ const initialState = {};
 
 const notebookReducer = (state = initialState, action) => {
     let newState;
+
     switch(action.type) {
         case GET_NOTEBOOKS:
+            //works
             newState = {...state};
-            action.payload.forEach(notebook => newState[notebook.id] = notebook)
+            action.notebooks.forEach(notebook => newState[notebook.id] = notebook)
             return newState;
         case CREATE_NOTEBOOK:
             return {...state, [action.newNotebook.id]: action.newNotebook}
         case DELETE_NOTEBOOK:
             newState = {...state};
-            delete newState[action.payload]
+            delete newState[action.notebook]
             return newState;
         default:
             return state;
