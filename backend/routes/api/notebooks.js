@@ -49,10 +49,11 @@ router.post(
 
 
 router.delete(
-    '/users/:userId/notebooks/',
+    '/users/:userId/notebooks/:notebookId',
     asyncHandler(async (req, res, next) => {
         const userId = req.params.userId
-        const {notebookId} = req.body
+        const notebookId = req.params.notebookId
+        
 
         const deletedNotebook = await Notebook.findByPk(parseInt(notebookId));
         //console.log(deletedNotebook)

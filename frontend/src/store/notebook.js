@@ -67,13 +67,15 @@ export const postNotebook = (notebook, userId) => async (dispatch) => {
 }
 
 export const deleteNotebookThunk = (notebookId, userId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/users/${userId}/notebooks`, {
+
+    const response = await csrfFetch(`/api/users/${userId}/notebooks/${notebookId}`, {
       method: 'DELETE',
-      body: JSON.stringify(notebookId)
+
     });
 
     if (response.ok) {
-        const removedNotebook = await response.json()
+        const removedNotebook = await response.json();
+        console.log(removedNotebook)
         dispatch(deleteNotebook(removedNotebook));
         return removedNotebook
     }
