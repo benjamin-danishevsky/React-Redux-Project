@@ -57,7 +57,7 @@ export const postNoteThunk = (note, userId) => async (dispatch) => {
 
         const newNote = await response.json()
 
-        dispatch(createNotebook(newNote))
+        dispatch(createNote(newNote))
         return newNote
     }
 
@@ -71,7 +71,7 @@ export const deleteNoteThunk = (noteId, userId) => async (dispatch) => {
     });
     if (response.ok) {
         const removedNote = await response.json();
-        dispatch(deleteNotebook(removedNote));
+        dispatch(deleteNote(removedNote));
         return removedNote
     }
 }
@@ -105,7 +105,8 @@ const noteReducer = (state = initialState, action) => {
             return newState;
         case UPDATE_NOTE:
             newState = {...state};
-            newState[action.note.id] = note
+            newState[action.note.id] = action.note;
+            return newState;
         case DELETE_NOTE:
             newState = {...state};
             delete newState[action.note.deletedNote.id]
