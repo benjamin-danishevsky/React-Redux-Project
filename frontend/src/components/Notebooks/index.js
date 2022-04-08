@@ -19,13 +19,14 @@ function Notebooks(){
     const data = Object.values(notebooks)
 
     const [showModal, setShowModal] = useState(false);
-    //const [showEditModal, setShowEditModal] = useState(false);
+    
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [currentBookId, setCurrentBookId] = useState();
 
     useEffect(() => {
         dispatch(notebookActions.fetchNotebooks(userId))
     }, [dispatch])
-    //dispatch(notebookActions.deletedNotebookThunk(notebook.id, userId))
+
 
     return(
         <div>
@@ -33,20 +34,21 @@ function Notebooks(){
             <h1>My Notebooks</h1>
             <h2>Notebooks</h2>
             {data.map((notebook) => (
-                <div className='notebook-title' key={notebook.id}>
-                    <Link to={`/notebooks/${notebook.id}` } className='notebook-link'>{notebook.title}</Link>
-                    {/* <button>Edit Notebook</button> */}
 
-                    <button onClick={() => setShowDeleteModal(true)}> Delete</button>
-                    {showDeleteModal && (
+                <div className='notebook-title' key={notebook.id}>
+                    <Link to={`/notebooks/${notebook.id}` } className='notebook-link'>Title: {notebook.title}</Link>
+
+
+                    <button onClick={() => dispatch(notebookActions.deleteNotebookThunk(notebook.id, userId))}> Delete</button>
+                    {/* {showDeleteModal && (
                         <Modal onClose={() => setShowDeleteModal(false)}>
                             <h3>Are you sure?</h3>
                             <button onClick={() => {
                                 dispatch(notebookActions.deleteNotebookThunk(notebook.id, userId))
                                 setShowDeleteModal(false)
-                            }}>Yes, I am sure</button>
+                            }}>Yes, I am sure. {notebook.title} {notebook.id}</button>
                         </Modal>
-                    )}
+                    )} */}
                 </div>
             ))}
             <button onClick={() => setShowModal(true)}>Create New Notebook</button>
