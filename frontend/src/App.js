@@ -43,6 +43,7 @@ function App() {
           </Route>
 
           <Route path='/notebooks/:notebookId'>
+            <Navigation isLoaded={isLoaded} />
             <Notes />
           </Route>
 

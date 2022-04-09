@@ -13,12 +13,16 @@ function Notes () {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    //get user, userId, and current notebookId
     const sessionUser = useSelector(state => state.session.user);
     const userId = sessionUser.id
+    const {notebookId} = useParams();
 
+    //get all notes
     const notes = useSelector(state => state.notes)
     const data = Object.values(notes);
-    const {notebookId} = useParams();
+    //filter notes belonging to current notebook
+    const filteredNotes = data.filter(note => note.notebookId === Number(notebookId))
 
 
     const [showModal, setShowModal] = useState(false);
@@ -31,7 +35,7 @@ function Notes () {
     return (
         <div>
             <h1>My Notes</h1>
-            {data.map((note) => (
+            {filteredNotes.map((note) => (
                 <div className='note-title' key={note.id}>
                     <h3>Title: {note.title}</h3>
                     <p>{note.content}</p>
