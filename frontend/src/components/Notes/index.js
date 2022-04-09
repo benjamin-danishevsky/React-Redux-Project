@@ -39,7 +39,7 @@ function Notes () {
                 <div className='note-title' key={note.id}>
                     <h3>Title: {note.title}</h3>
                     <p>{note.content}</p>
-                    <button onClick={() => setEditModal(true)}>EDIT</button>
+                    <button onClick={() => setEditModal(true)} className='edit-btn'>EDIT</button>
                     {editModal && (
                         <Modal onClose={() => setEditModal(false)}>
                             <EditNoteForm
@@ -49,11 +49,11 @@ function Notes () {
                             />
                         </Modal>
                     )}
-                    <button onClick={() => dispatch(noteActions.deleteNoteThunk(note.id, userId))}>DELETE</button>
+                    <button onClick={() => dispatch(noteActions.deleteNoteThunk(note.id, userId))} className='delete-btn'>DELETE</button>
                 </div>
             ))}
 
-            <button onClick={() => setShowModal(true)}>Create New Note</button>
+            <button onClick={() => setShowModal(true)} className='create-btn'>Create New Note</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <CreateNoteForm
