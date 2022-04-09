@@ -7,6 +7,7 @@ import {Modal} from '../../context/Modal';
 import * as noteActions from '../../store/note';
 
 import CreateNoteForm from './CreateNoteForm';
+import EditNoteForm from './EditNoteForm';
 
 function Notes () {
     const dispatch = useDispatch()
@@ -21,6 +22,7 @@ function Notes () {
 
 
     const [showModal, setShowModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
 
     useEffect(() => {
         dispatch(noteActions.getNoteThunk(userId))
@@ -33,6 +35,16 @@ function Notes () {
                 <div className='note-title' key={note.id}>
                     <h3>Title: {note.title}</h3>
                     <p>{note.content}</p>
+                    <button onClick={() => setEditModal(true)}>EDIT</button>
+                    {editModal && (
+                        <Modal onClose={() => setEditModal(false)}>
+                            <EditNoteForm
+                                editModal={editModal}
+                                setEditModal={setEditModal}
+                                noteId={note.id}
+                            />
+                        </Modal>
+                    )}
                     <button onClick={() => dispatch(noteActions.deleteNoteThunk(note.id, userId))}>DELETE</button>
                 </div>
             ))}

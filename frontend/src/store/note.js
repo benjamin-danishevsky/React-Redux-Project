@@ -79,7 +79,7 @@ export const deleteNoteThunk = (noteId, userId) => async (dispatch) => {
 //update note thunk
 export const editNoteThunk = (updatedNote) => async (dispatch) => {
     const { userId, noteId, title, content } = updatedNote;
-    const response = await csrfFetch(`/api/users/${userId}/notes/${noteId}`, {
+    const response = await csrfFetch(`/api/users/${userId}/notes/${noteId}/update`, {
       method: 'PUT',
       body: JSON.stringify({ userId, noteId, title, content})
     });
@@ -105,7 +105,9 @@ const noteReducer = (state = initialState, action) => {
             return newState;
         case UPDATE_NOTE:
             newState = {...state};
-            newState[action.note.id] = action.note;
+            console.log(newState);
+            console.log(action.note.newNote);
+            newState[action.note.newNote.id] = action.note.newNote;
             return newState;
         case DELETE_NOTE:
             newState = {...state};
