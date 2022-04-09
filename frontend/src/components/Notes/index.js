@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, Link, useHistory } from 'react-router-dom';
+import { Redirect, Link, useHistory, useParams } from 'react-router-dom';
 import {Modal} from '../../context/Modal';
 
 import * as noteActions from '../../store/note';
 
-
+import CreateNoteForm from './CreateNoteForm';
 
 function Notes () {
     const dispatch = useDispatch()
@@ -17,6 +17,8 @@ function Notes () {
 
     const notes = useSelector(state => state.notes)
     const data = Object.values(notes);
+    const {notebookId} = useParams();
+
 
     const [showModal, setShowModal] = useState(false);
 
@@ -35,8 +37,16 @@ function Notes () {
                 </div>
             ))}
 
-            {/* <button onClick={() => setShowModal(true)}>Create New Note</button> */}
-
+            <button onClick={() => setShowModal(true)}>Create New Note</button>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <CreateNoteForm
+                        showModal={showModal}
+                        setShowModal={setShowModal}
+                        notebookId={notebookId}
+                    />
+                </Modal>
+            )}
         </div>
     )
 }
