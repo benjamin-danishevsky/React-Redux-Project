@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 
 import * as noteActions from '../../store/note';
 
-function EditNoteForm ({editModal, setEditModal, noteId}) {
+function EditNoteForm ({editModal, setEditModal}) {
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -13,6 +13,7 @@ function EditNoteForm ({editModal, setEditModal, noteId}) {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [noteId, setNoteId] = useState()
     const [errors, setErrors] = useState([]);
 
     if (!sessionUser) return <Redirect to="/signup" />;
@@ -23,6 +24,7 @@ function EditNoteForm ({editModal, setEditModal, noteId}) {
         if(title.length < 1) validateErrors.push('Title is required');
         if(title.length > 100) validateErrors.push('Title is too long');
         if(content.length < 1) validateErrors.push('Content is required');
+        if(!noteId) validateErrors.push('A note id is required');
 
         if(validateErrors.length > 0){
             setErrors(validateErrors);
@@ -63,6 +65,14 @@ function EditNoteForm ({editModal, setEditModal, noteId}) {
                     name='content'
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
+                />
+            </label>
+            <label>ID
+                <input
+                    type='number'
+                    name='id'
+                    value={noteId}
+                    onChange={(e) => setNoteId(e.target.value)}
                 />
             </label>
             <button type="submit">Submit</button>

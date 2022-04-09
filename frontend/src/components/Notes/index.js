@@ -32,12 +32,16 @@ function Notes () {
         dispatch(noteActions.getNoteThunk(userId))
     }, [dispatch])
 
+    let noteId;
+
     return (
         <div>
             <h1>My Notes</h1>
             {filteredNotes.map((note) => (
-                <div className='note-title' key={note.id}>
+
+                <div className='note' key={note.id}>
                     <h3>Title: {note.title}</h3>
+                    <h4>ID: {note.id}</h4>
                     <p>{note.content}</p>
                     <button onClick={() => setEditModal(true)} className='edit-btn'>EDIT</button>
                     {editModal && (
@@ -45,7 +49,6 @@ function Notes () {
                             <EditNoteForm
                                 editModal={editModal}
                                 setEditModal={setEditModal}
-                                noteId={note.id}
                             />
                         </Modal>
                     )}
