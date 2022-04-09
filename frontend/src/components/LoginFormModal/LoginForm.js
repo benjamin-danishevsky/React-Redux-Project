@@ -20,7 +20,7 @@ function LoginForm () {
             credential: "Demo-lition",
             password: "password",
         })
-    );
+    ).then((user) => history.push(`/users/${user.user.id}`))
 
     //return history.push(`/`);
   };
@@ -29,7 +29,7 @@ function LoginForm () {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
-
+    .then((user) => history.push(`/users/${user.user.id}`))
     .catch(
       async (res) => {
         const data = await res.json();
