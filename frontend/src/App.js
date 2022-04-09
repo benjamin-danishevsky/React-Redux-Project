@@ -9,6 +9,7 @@ import LoginFormModal from "./components/LoginFormModal";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
 import HomePage from "./components/HomePage";
+import Notes from './components/Notes';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,11 @@ function App() {
           <Route path='/users/:userId'>
             <Navigation isLoaded={isLoaded} />
             <HomePage />
+          </Route>
+
+          <Route path='/notebooks/:notebookId'>
+            <Navigation isLoaded={isLoaded} />
+            <Notes />
           </Route>
 
           <Route>

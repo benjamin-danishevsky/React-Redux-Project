@@ -19,7 +19,7 @@ function Notebooks(){
     const data = Object.values(notebooks)
 
     const [showModal, setShowModal] = useState(false);
-    
+
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [currentBookId, setCurrentBookId] = useState();
 
@@ -27,7 +27,7 @@ function Notebooks(){
         dispatch(notebookActions.fetchNotebooks(userId))
     }, [dispatch])
 
-
+ 
     return(
         <div>
 
