@@ -3,7 +3,8 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
 
-      return queryInterface.bulkInsert('Notes', [{
+      return queryInterface.bulkInsert('Notes', [
+      {
         userId: 1,
         notebookId: 1,
         title: 'first note',
@@ -15,6 +16,31 @@ module.exports = {
         title: 'first note for second book',
         content: 'this is the first note in the second book'
       },
+      {
+        userId: 1,
+        notebookId: 1,
+        title: 'Reminder',
+        content: 'pick up dry cleaning'
+      },
+      {
+        userId: 1,
+        notebookId: 2,
+        title: 'Reminder',
+        content: 'fold the laundry'
+      },
+      {
+        userId: 1,
+        notebookId: 1,
+        title: 'Grocery Store List',
+        content: 'Milk, Eggs, Bread'
+      },
+      {
+        userId: 1,
+        notebookId: 2,
+        title: 'Wishlist',
+        content: 'Playstation 5, Elden Ring'
+      },
+
     ], {});
 
   },
