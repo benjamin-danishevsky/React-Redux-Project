@@ -39,33 +39,37 @@ function CreateNoteForm ({showModal, setShowModal, notebookId}) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className='create-notebook-form'>
+        <form onSubmit={handleSubmit} className='create-note-form'>
+            <h2 className="create-note-title">Create a new note</h2>
             <ul>
                 {errors && errors.map((error) => (
                     <li key={error}>{error}</li>
                 ))}
             </ul>
-            <h2>Create a new note</h2>
-            <label>
-                Title
-                <input
-                    type="text"
-                    name='title'
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-            </label>
+            <div className="note-create-form">
+                <label className='create-note-label'>
+                    Title
+                    <input
+                        className='create-note-input'
+                        type="text"
+                        name='title'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                </label>
 
-            <label>
-                Content
-                <textarea
-                    type="text"
-                    name='content'
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                />
-            </label>
-            <button type="submit">Submit</button>
+                <label className='create-note-label'>
+                    Content
+                    <textarea
+                        className='create-note-text'
+                        type="text"
+                        name='content'
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                    />
+                </label>
+                <button className='create-note-submit' type="submit">Submit</button>
+            </div>
         </form>
     )
 }

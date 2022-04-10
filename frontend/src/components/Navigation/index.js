@@ -32,7 +32,10 @@ function Navigation({ isLoaded }){
       <li>
         {sessionUser && (
 
-          <NavLink exact to={`/users/${userId}`}>Home</NavLink>
+          <NavLink exact to={`/users/${userId}`} className="link-home">
+            Go Back Home
+
+          </NavLink>
         )}
         {isLoaded && sessionLinks}
       </li>

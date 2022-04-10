@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from "react-router-dom";
-
+import './Notebooks.css';
 
 import * as notebookActions from '../../store/notebook';
 
@@ -44,18 +44,21 @@ function CreateNotebookForm ({showModal, setShowModal}) {
                     <li key={error}>{error}</li>
                 ))}
             </ul>
-            <h2>Create a new notebook</h2>
-            <label>
-                Name:
-                <input
-                    type="text"
-                    required
-                    name='title'
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-            </label>
-            <button type="submit">Submit</button>
+            <h2 className='create-notebook-title'>Create a new notebook</h2>
+            <div className='notebook-create-form'>
+                <label className='create-notebook-label'>
+                    Name:
+                    <input
+                        className='create-notebook-input'
+                        type="text"
+                        required
+                        name='title'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                </label>
+                <button className='create-notebook-submit' type="submit">Submit</button>
+            </div>
         </form>
     )
 }

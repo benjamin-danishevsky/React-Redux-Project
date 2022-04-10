@@ -4,3 +4,38 @@ ul {
     line-height: 21px;
 }
 
+button{
+    font-family: "Soleil_Bold",Helvetica,Arial,sans-serif;
+    background: #1F72DB;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    line-height: 1;
+    padding: 3px 5px 3px;
+    text-align: center;
+    text-decoration: none;
+    transition: .3s background ease-in-out;
+    margin-left: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.profile-entry{
+    margin-left: 10px;
+}
+
+.profile-dropdown{
+
+    margin: 10px;
+    width: 100px
+}
+
+.link-home{
+    text-decoration: none;
+    color: black;
+    margin-left: 15px;
+    font-size: 14px;
+}
