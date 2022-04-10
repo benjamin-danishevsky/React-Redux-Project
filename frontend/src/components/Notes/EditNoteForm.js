@@ -1,19 +1,24 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 
 import * as noteActions from '../../store/note';
 
-function EditNoteForm ({editModal, setEditModal}) {
+function EditNoteForm ({editModal, setEditModal, noteTitle, noteContent}) {
     const dispatch = useDispatch()
     const history = useHistory()
 
     const sessionUser = useSelector(state => state.session.user);
     const userId = sessionUser.id;
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [noteId, setNoteId] = useState()
+    const notes = useSelector(state => state.notes)
+    const {notebookId, noteId} = useParams()
+
+    const oldNote = notes[noteId]
+
+
+    const [title, setTitle] = useState(oldNote.title);
+    const [content, setContent] = useState(oldNote.content);
     const [errors, setErrors] = useState([]);
 
     if (!sessionUser) return <Redirect to="/signup" />;
@@ -24,12 +29,13 @@ function EditNoteForm ({editModal, setEditModal}) {
         if(title.length < 1) validateErrors.push('Title is required');
         if(title.length > 100) validateErrors.push('Title is too long');
         if(content.length < 1) validateErrors.push('Content is required');
-        if(!noteId) validateErrors.push('A note id is required');
+        //if(!noteId) validateErrors.push('A note id is required');
 
         if(validateErrors.length > 0){
             setErrors(validateErrors);
             return
         }
+        //console.log(typeof(noteId))
         const updatedNote = {
             userId,
             noteId,
@@ -37,7 +43,8 @@ function EditNoteForm ({editModal, setEditModal}) {
             content
         }
         dispatch(noteActions.editNoteThunk(updatedNote))
-        setEditModal(false);
+        //history.push(`/notebooks/${userId}`)
+        history.goBack();
     }
 
     return (
@@ -48,6 +55,8 @@ function EditNoteForm ({editModal, setEditModal}) {
                 ))}
             </ul>
             <h2>Update your note</h2>
+            <h3>{noteTitle}</h3>
+            <h3>{noteContent}</h3>
             <label>
                 Title
                 <input
@@ -67,14 +76,14 @@ function EditNoteForm ({editModal, setEditModal}) {
                     onChange={(e) => setContent(e.target.value)}
                 />
             </label>
-            <label>ID
+            {/* <label>ID
                 <input
                     type='number'
                     name='id'
                     value={noteId}
                     onChange={(e) => setNoteId(e.target.value)}
                 />
-            </label>
+            </label> */}
             <button type="submit">Submit</button>
         </form>
     )

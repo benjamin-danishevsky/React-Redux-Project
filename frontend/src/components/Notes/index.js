@@ -28,11 +28,13 @@ function Notes () {
     const [showModal, setShowModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
 
+    const [currentNoteId, setCurrentNoteId] = useState(0);
+    const [currentTitle, setCurrentTitle] = useState('');
+    const [currentContent, setCurrentContent] = useState('');
+
     useEffect(() => {
         dispatch(noteActions.getNoteThunk(userId))
     }, [dispatch])
-
-    let noteId;
 
     return (
         <div>
@@ -41,17 +43,15 @@ function Notes () {
 
                 <div className='note' key={note.id}>
                     <h3>Title: {note.title}</h3>
-                    <h4>ID: {note.id}</h4>
+
                     <p>{note.content}</p>
-                    <button onClick={() => setEditModal(true)} className='edit-btn'>EDIT</button>
-                    {editModal && (
-                        <Modal onClose={() => setEditModal(false)}>
-                            <EditNoteForm
-                                editModal={editModal}
-                                setEditModal={setEditModal}
-                            />
-                        </Modal>
-                    )}
+                    <button onClick={() => {
+                        setCurrentTitle(note.title)
+                        setCurrentContent(note.content)
+                        history.push(`/notebooks/${notebookId}/notes/${note.id}/edit`)
+                        }} className='edit-btn'>EDIT</button>
+
+
                     <button onClick={() => dispatch(noteActions.deleteNoteThunk(note.id, userId))} className='delete-btn'>DELETE</button>
                 </div>
             ))}

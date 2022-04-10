@@ -10,6 +10,7 @@ import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
 import HomePage from "./components/HomePage";
 import Notes from './components/Notes';
+import EditNoteForm from './components/Notes/EditNoteForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,10 +43,16 @@ function App() {
             <HomePage />
           </Route>
 
+          <Route exact path='/notebooks/:notebookId/notes/:noteId/edit'>
+            <Navigation isLoaded={isLoaded} />
+            <EditNoteForm />
+          </Route>
+          
           <Route path='/notebooks/:notebookId'>
             <Navigation isLoaded={isLoaded} />
             <Notes />
           </Route>
+
 
           <Route>
             <h1>Page Not Found</h1>
