@@ -84,6 +84,13 @@ p {
     font-size: 16px;
 }
 
+.create-note-errors{
+    text-align: center;
+}
+.edit-note-errors{
+    text-align: center;
+}
+
 #modal-content{
     background-color: #1F72DB;
     border-radius: 10px;

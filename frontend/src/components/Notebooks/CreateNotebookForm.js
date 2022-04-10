@@ -39,19 +39,18 @@ function CreateNotebookForm ({showModal, setShowModal}) {
     }
     return (
         <form onSubmit={handleSubmit} className='create-notebook-form'>
-            <ul>
+            <h2 className='create-notebook-title'>Create a new notebook</h2>
+            <ul className='create-notebook-errors'>
                 {errors && errors.map((error) => (
                     <li key={error}>{error}</li>
                 ))}
             </ul>
-            <h2 className='create-notebook-title'>Create a new notebook</h2>
             <div className='notebook-create-form'>
                 <label className='create-notebook-label'>
                     Name:
                     <input
                         className='create-notebook-input'
                         type="text"
-                        required
                         name='title'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}

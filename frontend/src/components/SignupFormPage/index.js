@@ -46,7 +46,7 @@ function SignupFormPage() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+
           />
         </label>
         <label className='signup-label'>
@@ -56,7 +56,7 @@ function SignupFormPage() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
+
           />
         </label>
         <label className='signup-label'>
@@ -66,7 +66,7 @@ function SignupFormPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+
           />
         </label>
         <label className='signup-label'>
@@ -76,7 +76,7 @@ function SignupFormPage() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
+
           />
         </label>
         <button className='signup-submit' type="submit">Sign Up</button>

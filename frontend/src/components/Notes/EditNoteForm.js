@@ -51,7 +51,7 @@ function EditNoteForm ({editModal, setEditModal, noteTitle, noteContent}) {
     return (
         <form onSubmit={handleSubmit} className='edit-notebook-form'>
             <h2 className='edit-note-title'>Update your note</h2>
-            <ul>
+            <ul className='edit-note-errors'>
                 {errors && errors.map((error) => (
                     <li key={error}>{error}</li>
                 ))}

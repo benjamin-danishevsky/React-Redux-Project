@@ -57,6 +57,9 @@
     cursor: pointer;
     margin-top: 10px;
 }
+.create-notebook-errors{
+    text-align: center;
+}
 
 h3{
     text-decoration: underline;

@@ -41,9 +41,9 @@ function CreateNoteForm ({showModal, setShowModal, notebookId}) {
     return (
         <form onSubmit={handleSubmit} className='create-note-form'>
             <h2 className="create-note-title">Create a new note</h2>
-            <ul>
+            <ul className="create-note-errors">
                 {errors && errors.map((error) => (
-                    <li key={error}>{error}</li>
+                    <li className='error'key={error}>{error}</li>
                 ))}
             </ul>
             <div className="note-create-form">
