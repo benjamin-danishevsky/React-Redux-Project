@@ -1,0 +1,60 @@
+#modal-content{
+    background-color: #1F72DB;
+    border-radius: 10px;
+    width: 50%;
+    height: 20%;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-label{
+    margin: 20px;
+}
+
+.login-input{
+    margin-left: 10px;
+    width: 250px;
+}
+
+.login-submit{
+    font-family: "Soleil_Bold",Helvetica,Arial,sans-serif;
+    background: #DB991F;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    line-height: 1;
+    padding: 5px 10px 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: .3s background ease-in-out;
+    margin-left: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.login-demo{
+    font-family: "Soleil_Bold",Helvetica,Arial,sans-serif;
+    background: #DB991F;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    line-height: 1;
+    padding: 5px 10px 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: .3s background ease-in-out;
+    margin-left: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link, useHistory, useParams } from 'react-router-dom';
 import {Modal} from '../../context/Modal';
-
+import './Notes.css'
 import * as noteActions from '../../store/note';
 
 import CreateNoteForm from './CreateNoteForm';
@@ -35,16 +35,17 @@ function Notes () {
     useEffect(() => {
         dispatch(noteActions.getNoteThunk(userId))
     }, [dispatch])
-
+ 
     return (
-        <div>
-            <h1>My Notes</h1>
+        <div className='notes-container'>
+            <h1>Your Notes</h1>
+            <h2>{filteredNotes.length} Notes</h2>
             {filteredNotes.map((note) => (
 
                 <div className='note' key={note.id}>
-                    <h3>Title: {note.title}</h3>
+                    <h3 className='note-title'>{note.title}</h3>
 
-                    <p>{note.content}</p>
+                    <p className='note-content'>{note.content}</p>
                     <button onClick={() => {
                         setCurrentTitle(note.title)
                         setCurrentContent(note.content)

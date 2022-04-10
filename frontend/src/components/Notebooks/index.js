@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link, useHistory } from 'react-router-dom';
 import {Modal} from '../../context/Modal';
+import './Notebooks.css';
 
 import CreateNotebookForm from './CreateNotebookForm';
 
@@ -20,43 +21,32 @@ function Notebooks(){
 
     const [showModal, setShowModal] = useState(false);
 
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [currentBookId, setCurrentBookId] = useState();
-
     useEffect(() => {
         dispatch(notebookActions.fetchNotebooks(userId))
     }, [dispatch])
 
- 
-    return(
-        <div>
 
-            <h1>My Notebooks</h1>
-            <h2>Notebooks</h2>
+    return(
+        <div className="notebook-container">
+
+            <h2>Your Notebooks</h2>
+            <h3>{data.length} Notebooks</h3>
             {data.map((notebook) => (
 
                 <div className='notebook-title' key={notebook.id}>
                     <Link to={`/notebooks/${notebook.id}` } className='notebook-link'>Title: {notebook.title}</Link>
-
-
-                    <button onClick={() => dispatch(notebookActions.deleteNotebookThunk(notebook.id, userId))}> Delete</button>
-                    {/* {showDeleteModal && (
-                        <Modal onClose={() => setShowDeleteModal(false)}>
-                            <h3>Are you sure?</h3>
-                            <button onClick={() => {
-                                dispatch(notebookActions.deleteNotebookThunk(notebook.id, userId))
-                                setShowDeleteModal(false)
-                            }}>Yes, I am sure. {notebook.title} {notebook.id}</button>
-                        </Modal>
-                    )} */}
+                    <button className='notebook-delete-btn' onClick={() => dispatch(notebookActions.deleteNotebookThunk(notebook.id, userId))}> Delete</button>
                 </div>
             ))}
-            <button onClick={() => setShowModal(true)}>Create New Notebook</button>
+
+            <button className='notebook-create-btn' onClick={() => setShowModal(true)}>Create New Notebook</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <CreateNotebookForm showModal={showModal} setShowModal={setShowModal}/>
                 </Modal>
             )}
+            {/* <img src='' alt='gif'/> */}
+            <iframe src="https://giphy.com/embed/3oKGzvg3gGxSS3O38A" width="280" height="280" frameBorder="0" allowFullScreen></iframe>
         </div>
     )
 }

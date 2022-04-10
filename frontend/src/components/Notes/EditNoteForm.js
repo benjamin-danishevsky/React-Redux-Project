@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from "react-router-dom";
+import './Notes.css';
 
 import * as noteActions from '../../store/note';
 
@@ -49,42 +50,37 @@ function EditNoteForm ({editModal, setEditModal, noteTitle, noteContent}) {
 
     return (
         <form onSubmit={handleSubmit} className='edit-notebook-form'>
+            <h2 className='edit-note-title'>Update your note</h2>
             <ul>
                 {errors && errors.map((error) => (
                     <li key={error}>{error}</li>
                 ))}
             </ul>
-            <h2>Update your note</h2>
-            <h3>{noteTitle}</h3>
-            <h3>{noteContent}</h3>
-            <label>
-                Title
-                <input
-                    type="text"
-                    name='title'
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-            </label>
+            <div className='note-edit-form'>
+                <label className='edit-note-label'>
+                    Title
+                    <input
+                        className='edit-note-input'
+                        type="text"
+                        name='title'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                </label>
 
-            <label>
-                Content
-                <textarea
-                    type="text"
-                    name='content'
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                />
-            </label>
-            {/* <label>ID
-                <input
-                    type='number'
-                    name='id'
-                    value={noteId}
-                    onChange={(e) => setNoteId(e.target.value)}
-                />
-            </label> */}
-            <button type="submit">Submit</button>
+                <label className='edit-note-label'>
+                    Content
+                    <textarea
+                        className='edit-note-text'
+                        type="text"
+                        name='content'
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                    />
+                </label>
+
+                <button className='edit-note-submit'type="submit">Submit</button>
+            </div>
         </form>
     )
 }
