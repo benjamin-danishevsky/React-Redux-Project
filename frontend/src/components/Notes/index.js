@@ -35,7 +35,7 @@ function Notes () {
     useEffect(() => {
         dispatch(noteActions.getNoteThunk(userId))
     }, [dispatch])
- 
+    //if (!sessionUser) return <Redirect to="/" />;
     return (
         <div className='notes-container'>
             <h1>Your Notes</h1>
